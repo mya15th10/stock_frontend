@@ -1,5 +1,5 @@
 import React from 'react';
-import './Login.css'; // Import CSS riêng cho component Login
+import '../styles/Login.css'; // Import CSS riêng cho component Login
 
 const Login = ({ isOpen, onClose }) => {
   if (!isOpen) return null; // Nếu modal không mở, không render gì cả
