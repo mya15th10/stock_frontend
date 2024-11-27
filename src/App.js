@@ -8,27 +8,28 @@ import Forgot from "./component/Forgot.js";
 import About from "./component/About.js";
 import Instruction from "./component/Instruction.js"
 import Contact from "./component/Contact.js"
+import Dashboard from "./component/Dashboard.js"
+import { MyProvider }  from "./component/Context.js"
+import Navbar from "./component/Navbar.js";
 
 
 function App() {
-  // const navigate = useNavigate();  
-
-  // useEffect(() => {
-  //   // Điều hướng đến /About khi ứng dụng được render lần đầu tiên
-  //   navigate('/about');
-  // }, [navigate]);
 
   return (
     <div>
-      <Routes>
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/forgot" element={<Forgot />} />
-        <Route path="/instruction" element={<Instruction />} />
-        <Route path="/contact" element={<Contact />} />
-        {/* Các Route khác có thể thêm vào đây */}
-      </Routes>
+      <MyProvider >
+        <Navbar />
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+          <Route path="/instruction" element={<Instruction />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+
+        </Routes>
+      </MyProvider >
     </div>
   );
 }

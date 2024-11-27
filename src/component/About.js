@@ -1,13 +1,24 @@
-import { useEffect, useRef } from "react"
+import { useContext, useEffect, useRef } from "react"
 import Navbar from "./Navbar.js"
-import "../styles/about.css"
+import "../style/about.css"
 import phone1 from "../assets/phone1.png"
 import phone2 from "../assets/phone2.png"
 
+import { useTranslation } from "react-i18next"
+import { MyContext } from "./Context";
+
 
 function About() {
+    // Set order of component on Navbar
+    const { setOrder } = useContext(MyContext);
+    useEffect(() => {
+        setOrder(3);
+    }, [])
+
     const phone1Ref = useRef(null);
     const phone2Ref = useRef(null);
+
+    const { t } = useTranslation("about");
     
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -27,17 +38,13 @@ function About() {
 
     return (
         <div className="about-page">
-            <Navbar />
+            {/* <Navbar /> */}
+            
             <div className="about-section">
 
                 <div className="about-content">
-                    <h1>About Us</h1>
-                    <p>Our website was developed to provide modern tools
-                       for stock analysis and prediction,helping investors 
-                       make smarter decisions.By utilizing advanced data 
-                       analysis models and keeping up with market updates,
-                       we are committed to delivering accurate and timely information.
-                    </p>
+                    <h1>{t("title")}</h1>
+                    <p>{t("intro")}</p>
                     {/* <button>Go Home</button> */}
                 </div>
 

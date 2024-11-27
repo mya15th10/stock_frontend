@@ -50,6 +50,7 @@
     top: 33%;
 }
 
+
 .order-box {
     display: flex;
     flex-direction: row;
@@ -59,8 +60,8 @@
     border-radius: 33px;
     margin-bottom: 10%;
     background-color: #1f222c;
-    width: 46%;
-    height: 72px;
+    width: 250px;
+    height: 80px;
     padding: 0% 1%;
 }
 
@@ -86,7 +87,6 @@
     color: white;
     font-size : 0.9em;
     width: 100%;
-    margin: 0 0;
     text-align: start;
 }
 

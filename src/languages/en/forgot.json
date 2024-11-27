@@ -1,0 +1,7 @@
+{
+    "password-reset": "PASSWORD RESET",
+    "instruction-label": "Please enter the email address you'd like your password reset information sent to",
+    "reset-btn": "Reset password",
+    "login": "Login",
+    "sign-up": "Signup"
+}

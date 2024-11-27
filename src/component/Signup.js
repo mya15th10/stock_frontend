@@ -1,33 +1,44 @@
-import "../styles/signup.css"
-import Navbar from "./Navbar"
+import "../style/signup.css"
+
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+import { MyContext } from "./Context";
+import { useContext, useEffect } from "react";
 
 function Signup() {
+	// Set order of component on Navbar
+    const { setOrder } = useContext(MyContext);
+	useEffect(() => {
+        setOrder(5);
+    }, [])
+
+	const { t } = useTranslation("signup");
+	
 	return (
 		<div className="signup-page">
-			<Navbar />
+			{/* <Navbar /> */}
 
 			<div className="signup-section">
 				<div className="signup-container">
-					<h2 className="signup-title">SIGN UP</h2>
+					<h2 className="signup-title">{t("signup-title")}</h2>
 
 					<form className="signup-form">
 						<div className="signup-input-frame">
-                        	<input type="email" placeholder="Email"></input>
+                        	<input type="email" placeholder={t("email-placeholder")}></input>
                     	</div>
 						<div className="signup-input-frame">
-                        	<input type="text" placeholder="Username"></input>
+                        	<input type="text" placeholder={t("username-placeholder")}></input>
                     	</div>
 						<div className="signup-input-frame">
-                        	<input type="password" placeholder="Password"></input>
+                        	<input type="password" placeholder={t("password-placeholder")}></input>
                     	</div>
 						<div className="signup-input-frame">
-                        	<input type="password" placeholder="Re-enter password"></input>
+                        	<input type="password" placeholder={t("re-password-placeholder")}></input>
                     	</div>
 
-						<button className="signup-button" type="submit">Sign up</button>
+						<button className="signup-button" type="submit">{t("signup-btn")}</button>
 
-						<Link className="back-login" to="/login">Back to login</Link>
+						<Link className="back-login" to="/login">{t("back-login")}</Link>
 					</form>
 				</div>
 

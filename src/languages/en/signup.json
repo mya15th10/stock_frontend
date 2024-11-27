@@ -1,0 +1,9 @@
+{
+    "signup-title": "SIGN UP",
+    "email-placeholder": "Email",
+    "username-placeholder": "User name",
+    "password-placeholder": "Password",
+    "re-password-placeholder": "Re-enter password",
+    "signup-btn": "Sign up",
+    "back-login": "Back to login"
+}
