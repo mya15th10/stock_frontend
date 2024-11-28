@@ -1,0 +1,9 @@
+{
+    "title": "LOGIN",
+    "username-placeholder": "User name",
+    "password-placeholder": "Password",
+    "remember-me": "Remember me",
+    "login-btn": "Login",
+    "forgot-password": "Forgot password",
+    "create-account": "Create account"
+}
