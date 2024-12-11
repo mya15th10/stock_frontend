@@ -11,6 +11,9 @@ import Contact from "./component/Contact.js"
 import Dashboard from "./component/Dashboard.js"
 import { MyProvider }  from "./component/Context.js"
 import Navbar from "./component/Navbar.js";
+import Market from './component/Market';
+import PredictionPage from './component/Prediction';
+
 
 
 function App() {
@@ -20,6 +23,7 @@ function App() {
       <MyProvider >
         <Navbar />
         <Routes>
+          <Route path="/" element={<Market />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
@@ -27,6 +31,8 @@ function App() {
           <Route path="/instruction" element={<Instruction />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/market" element={<Market />} />
+          <Route path="/prediction" element={<PredictionPage />} />
 
         </Routes>
       </MyProvider >

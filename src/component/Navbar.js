@@ -43,7 +43,7 @@ function Navbar() {
             </div>
 
             <nav className="section2">
-                <Link onClick={() => setOrder(1)} to="#" className={`navbar-link ${order === 1 ? "chossing" : ""}`}>{t("market")}</Link>
+                <Link onClick={() => setOrder(1)} to="/" className={`navbar-link ${order === 1 ? "chossing" : ""}`}>{t("market")}</Link>
                 <Link onClick={() => setOrder(2)} to="/instruction" className={`navbar-link ${order === 2 ? "chossing" : ""}`}>{t("instruction")}</Link>
                 <Link onClick={() => setOrder(3)} to="/about" className={`navbar-link ${order === 3 ? "chossing" : ""}`}>{t("about")}</Link>
                 <Link onClick={() => setOrder(4)} to="/contact" className={`navbar-link ${order === 4 ? "chossing" : ""}`}>{t("contact")}</Link>

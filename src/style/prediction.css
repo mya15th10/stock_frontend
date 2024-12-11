@@ -1,0 +1,127 @@
+#dashboard-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #1a1d1f;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 250px; /* Để không bị sidebar đè lên */
+}
+
+@media (max-width: 768px) {
+    .dashboard-content {
+        margin-left: 80px; /* Khi sidebar thu nhỏ */
+    }
+}
+.prediction-container {
+    padding: 2rem;
+    background-color: #171a22;
+    min-height: 100vh;
+    color: #f4f4f6;
+}
+
+.prediction-section,
+.recommendation-section,
+.top-recommendations-section {
+    background-color: #1f222c;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.prediction-search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #0c111c91;
+    border: 1px solid #262a39;
+    border-radius: 8px;
+    color: #f4f4f6;
+    font-size: 1rem;
+}
+
+.prediction-search:focus {
+    outline: none;
+    border-color: #4b31a2;
+    box-shadow: 0 0 0 2px rgba(75, 49, 162, 0.2);
+}
+
+.prediction-table-container {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.prediction-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0c111c91;
+    box-shadow: 0px 7px 20px #0f0f0fb7;
+}
+
+.prediction-table th,
+.prediction-table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #262a39;
+}
+
+.prediction-table th {
+    background-color: #0f121ab2;
+    color: #f4f4f6;
+    font-weight: bold;
+}
+
+.prediction-table tr:hover {
+    background-color: #c9dcea27;
+}
+
+.symbol-color {
+    color: #4b31a2;
+    font-weight: bold;
+}
+
+.col-color {
+    color: #b8b9bf;
+}
+
+.text-green-500 {
+    color: #1bb881;
+    font-weight: bold;
+}
+
+.text-red-500 {
+    color: #be0026;
+    font-weight: bold;
+}
+
+.text-yellow-500 {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .prediction-container {
+        padding: 1rem;
+    }
+
+    .prediction-table th,
+    .prediction-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .prediction-table th,
+    .prediction-table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+}
+

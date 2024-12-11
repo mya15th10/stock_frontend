@@ -1,0 +1,272 @@
+#market-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    min-height: 100vh;
+}
+
+.market-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.top-section {
+    display: flex;
+    gap: 20px;
+}
+
+.stock-table {
+    flex: 0 0 450px;
+    background: #1f222c;
+    border-radius: 15px;
+    padding: 15px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.top-stocks-header {
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+
+.stock-table table {
+    width: 100%;
+    color: #f4f4f6;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.stock-table th {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 2px solid #30363d;
+    white-space: nowrap;
+}
+
+.stock-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #262a39;
+}
+
+.stock-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+}
+
+.stock-chart {
+    flex: 1;
+    background: #1f222c;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 500px;
+}
+
+.stock-chart h2 {
+    color: #fff;
+    margin-top: 0;
+}
+
+.news-panel {
+    flex: 0 0 300px;
+    background: #1f222c;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.news-panel h3 {
+    color: #fff;
+    margin-top: 0;
+}
+
+.news-card {
+    background: #262a34;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.news-card h4 {
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+.news-card p {
+    color: #8e8e93;
+    margin: 0;
+}
+
+.bottom-section {
+    background: #1f222c;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.historical-data h3 {
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+
+.increase { color: #1bb881; }
+.decrease { color: #be0026; }
+
+@media (max-width: 1200px) {
+    .top-section {
+        flex-direction: column;
+    }
+    
+    .stock-table,
+    .stock-chart,
+    .news-panel {
+        flex: none;
+        width: 100%;
+    }
+}
+.historical-section {
+    background: #1f222c;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.historical-title {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    gap: 2px;
+    background: #1f222c;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 8px 16px;
+    border: 1px solid #30363d;
+    background: transparent;
+    color: #f4f4f6;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tab-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.search-bar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.search-input, .date-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.search-input label, .date-filter label {
+    font-size: 14px;
+    color: #f4f4f6;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input, .time-select {
+    background: #1f222c;  
+    color: #f4f4f6;      
+    border: 1px solid #30363d;  
+    padding: 8px 12px;
+    border-radius: 4px;
+    min-width: 200px;
+}
+.input-group input::placeholder {
+    color: #8e8e93; /* Màu placeholder sáng hơn */
+}
+
+.search-icon {
+    color: #f4f4f6; /* Màu biểu tượng tìm kiếm thành trắng */
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    color: #6c757d;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-view, .btn-export:hover {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-view {
+    background: #262a34;
+    color: #f4f4f6;
+}
+
+.btn-export {
+    background: #198754;
+    color: white;
+}
+
+.historical-table {
+    overflow-x: auto;
+}
+
+.historical-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historical-table th {
+    background: #262a34;
+    color: #f4f4f6;
+    border: 1px solid #30363d;
+    padding: 12px;
+    text-align: center;
+}
+
+.historical-table td {
+    background: #1f222c; /* Nền tối */
+    color: #f4f4f6; /* Chữ màu trắng */
+    border: 1px solid #30363d; /* Viền tối đồng bộ */
+    padding: 8px;
+    text-align: right;
+}
+
+.historical-table td:first-child {
+    text-align: center;
+}
+.btn-buy-stock {
+    background: #dc3545; /* Màu đỏ */
+    color: white; /* Chữ trắng */
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-buy-stock:hover {
+    background: #a71d2a; /* Màu đỏ đậm hơn khi hover */
+}
