@@ -78,12 +78,12 @@ function SideBar(props) {
     return (
         <div className="sidebar responsive-sidebar">
             <div ></div>
-            <a onClick={(e) => { setItemOrder(1); goToRef(e, props.dashboardRef, 0) }} >
+            <Link onClick={(e) => { setItemOrder(1);}} >
                 <Card icon={itemOrder === 1 ? dashboardActive : dashboard} text="Dashboard" active={itemOrder === 1} />
-            </a>
-            <a onClick={(e) => {setItemOrder(2); goToRef(e, props.portfolioRef, 0)}}  >
+            </Link>
+            <Link onClick={(e) => {setItemOrder(2);}} to="/portfolio" >
                 <Card icon={itemOrder === 2 ? portfolioActive : portfolio} text="View portfolio" active={itemOrder === 2} />
-            </a>
+            </Link>
             <Link onClick={() => setItemOrder(3)} to="/prediction" >
                 <Card icon={itemOrder === 3 ? predictionActive : prediction} text="Stock prediction" active={itemOrder === 3} />
             </Link>
@@ -209,13 +209,6 @@ const renderCustomLegend = (props) => {
     );
 };
 
-function goToRef(event, targetRef, offset) {
-    event.preventDefault();
-    if(targetRef.current) {
-        const targetPosition = targetRef.current.offsetTop - offset;
-        window.scrollTo({top: targetPosition, behavior: "smooth"})
-    }
-};
 
 
 
@@ -323,39 +316,39 @@ function Dashboard() {
         return () => window.removeEventListener("resize", handleResize);
     }, [showLegend]);
 
-    const portfolioRef = useRef(null);
-    const dashboardRef = useRef(null);
-    const [sidebarOrder, setSidebarOrder] = useState(1);
+    // const portfolioRef = useRef(null);
+    // const dashboardRef = useRef(null);
+    // const [sidebarOrder, setSidebarOrder] = useState(1);
 
-    const [portfolioPos, setPortfolioPos] = useState(0);
+    // const [portfolioPos, setPortfolioPos] = useState(0);
 
-    // Cập nhật vị trí cuộn khi cuộn trang
-    useEffect(() => {
-        function handleScroll() {
-            var portfolioPosition;
-            if(portfolioRef.current)
-                portfolioPosition = portfolioRef.current.getBoundingClientRect();
+    // // Cập nhật vị trí cuộn khi cuộn trang
+    // useEffect(() => {
+    //     function handleScroll() {
+    //         var portfolioPosition;
+    //         if(portfolioRef.current)
+    //             portfolioPosition = portfolioRef.current.getBoundingClientRect();
 
-            setPortfolioPos(portfolioPosition.top);  
-        };
+    //         setPortfolioPos(portfolioPosition.top);  
+    //     };
 
-        window.addEventListener("scroll", handleScroll);
+    //     window.addEventListener("scroll", handleScroll);
 
-        // Dọn dẹp sự kiện khi component bị hủy
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+    //     // Dọn dẹp sự kiện khi component bị hủy
+    //     return () => {
+    //         window.removeEventListener("scroll", handleScroll);
+    //     };
+    // }, []);
 
     
-    useEffect(() => {
-        if (portfolioPos <= window.innerHeight / 2) {
-            setSidebarOrder(2);  
-        } else {
-            setSidebarOrder(1);  
-        }
+    // useEffect(() => {
+    //     if (portfolioPos <= window.innerHeight / 2) {
+    //         setSidebarOrder(2);  
+    //     } else {
+    //         setSidebarOrder(1);  
+    //     }
         
-    }, [portfolioPos]); 
+    // }, [portfolioPos]); 
 
     const [pageNum, setPageNum] = useState(1);
     const navigateTableFw = () => {
@@ -370,12 +363,12 @@ function Dashboard() {
         <div id="dashboard-page">
             <div style={{ height: "200vh" }}></div>  {/* gia lap thanh cuon*/}
 
-            <SideBar order={sidebarOrder} setLogout={() => SetIsLogin(false)}  
-                    portfolioRef={portfolioRef} dashboardRef={dashboardRef} 
+            <SideBar setLogout={() => SetIsLogin(false)}  
+                    // portfolioRef={portfolioRef} dashboardRef={dashboardRef} 
             />
 
             <div className="dashboard-content">
-                <div ref={dashboardRef} className="red-cards">
+                <div className="red-cards">
                     <RedCard icon={balance} name="Total Balance" money={1.1234} />
                     <RedCard isDropdown={isDropdownIncome} setOpt={setOptIncome} setDropdown={setDropdownIncome}
                         option={option} icon={income} name="Income" time={`(${typeOfTime("en", optIncome)})`} money={1.1234}
@@ -468,39 +461,6 @@ function Dashboard() {
                         </ResponsiveContainer>
                     </div>
 
-                </div>
-
-                <div ref={portfolioRef}  className="view-portfolio-container">
-                    <div className="view-portfolio">
-                        <div className="title-navigation">
-                            <h2>Portfolio</h2>
-                            <div className="navigation">
-                                <img onClick={() => navigateTableBw()} alt="" src={leftNav}></img>
-                                <p>{pageNum}</p>
-                                <img onClick={() => navigateTableFw()} alt="" src={rightNav}></img>
-                            </div>
-                        </div>
-                        <table>
-                            <thead className="head">
-                                <tr>
-                                    {columnPortfolioData.map((header => (
-                                        <th>{header}</th>
-                                    )))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {portfolioData.map(row => (
-                                    <tr>
-                                        <td className="symbol-color">{row.symbol}</td>
-                                        <td className="col-color">{row.date}</td>
-                                        <td className="col-color">{row.amount}</td>
-                                        <td className="col-color">{row.purchase}</td>
-                                        <td className={row.current - row.purchase >= 0 ? "increase" : "decrease"}>{row.current}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
             </div>

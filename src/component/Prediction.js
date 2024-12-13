@@ -42,7 +42,7 @@ function SideBar(props) {
             <Link to="/dashboard" onClick={() => setItemOrder(1)}>
                 <Card icon={itemOrder === 1 ? dashboardActive : dashboard} text="Dashboard" active={itemOrder === 1} />
             </Link>
-            <Link to="/dashboard" onClick={() => setItemOrder(2)}>
+            <Link to="/portfolio" onClick={() => setItemOrder(2)}>
                 <Card icon={itemOrder === 2 ? portfolioActive : portfolio} text="View portfolio" active={itemOrder === 2} />
             </Link>
             <Link to="/prediction" onClick={() => setItemOrder(3)}>

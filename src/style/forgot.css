@@ -1,6 +1,10 @@
-.forgot-page {
+#forgot-page {
     width: 100vw;
     height: 100vh;
+}
+
+#forgot-page .hidden {
+    display: none;
 }
 
 .forgot-section {
@@ -13,11 +17,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    position: relative;
     background-color: #1f222d;
 
     border: 1px solid #ffffff33;
-    /* box-shadow: 0px 0 10px rgba(255, 255, 255, 0.5); */
     border-radius: 10px;
     width: 400px;
     height: 420px;
@@ -32,7 +35,8 @@
 }
 
 .forgot-container h2 {
-    margin: 10% 0px
+    margin-top: 10%;
+    margin-bottom: 7%;
 }
 
 .forgot-form {
@@ -49,6 +53,9 @@
     background-color: transparent;
     padding: 5px 10px;
     margin: 0px 0px;
+    position: relative;
+    width: 90%;
+    margin-bottom: 22px;
 }
 
 .forgot-input-frame input {
@@ -62,8 +69,7 @@
 
     font-size: 1rem;
     margin-top: 3%;
-    width: 85%;
-    
+    width: 90%;
 }
 
 .forgot-input-frame input:focus {
@@ -77,14 +83,29 @@
     text-align: center;
 }
 
-/* .signup-button {
-    margin-top: 6%;
-    width: 80%;
-} */
+label.new-password {
+    position: absolute;
+    color: #63656c;
+    font-size: 0.7rem;
+    top: -5px;
+    left: 32px;
+    text-align: center;
+}
+
+.forgot-button {
+    padding: 6px 10px;
+    width: 130px;
+    margin-top: 25px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
 
 .horizontal-line {
     width: 75%;
-    margin-top: 14%;
+    margin-top: 25px;
+    position: absolute;
+    bottom: 60px;
 }
 
 .login-signup {
@@ -93,6 +114,8 @@
     justify-content: space-around;
     margin-top: 5%;
     gap: 10px;
+    position: absolute;
+    bottom: 20px;
 }
 
 
@@ -109,5 +132,82 @@
 
 .login-signup p {
     color: #808080;
+    margin: 0;
+}
+
+.forgot-error {
+    color: red;
+    position: absolute;
+    left: 30px;
+    bottom: -32px;
+    font-size: 0.85rem;
+}
+
+.forgot-error-hidden {
+    display: none;
+}
+
+.forgot-success {
+    /* display: none; */
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+
+.forgot-non-success {
+    display: none;
+}
+
+.forgot-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 475px;
+    height: 260px;
+    background-color: #042634;
+    margin: 20px auto;
+    border-radius: 10px;
+    color: #f7f7f7;
+}
+
+.forgot-success-container img {
+    width: 70px;
+    height: 70px;
+    margin-top: 20px
+}
+
+.forgot-success-container h2 {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.forgot-success-container p {
+    margin-top:  10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.forgot-success-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 14px;
+    width: 120px;
+    height: 45px;
+    background-color: #25ae88;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.forgot-success-btn p {
+    text-align: center;
+    color: #f7f7f7;
     margin: 0;
 }

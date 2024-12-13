@@ -272,6 +272,10 @@
     justify-content: center;
     width: 100%;
     margin-top: 30px;
+    padding: 2rem;
+    background-color: #171a22;
+    /* min-height: 100vh; */
+    color: #f4f4f6;
 }
 
 .view-portfolio {
@@ -279,7 +283,7 @@
     background-color: #1f222c;
     color: white;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     padding: 5px 30px 30px 30px;
     border-radius: 15px;
 }
@@ -363,6 +367,118 @@
 }
 
 
+.sell-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sell-container p {
+    margin: 0;
+    padding: 3px 0;
+    background-color: #1bb881;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.selling-container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+}
+
+.selling {
+    background-color: white;
+    width: 500px;
+    height: 300px;
+    position: relative;
+    padding: 10px 10px;
+}
+
+.selling p, .selling h3 {
+    margin: 0;
+}
+
+.selling p {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.selling h3 {
+    font-size: 1.8rem;
+}
+
+.selling .close-btn {
+    width: 50px;
+    height: 40px;
+    background-color: #11141d;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selling .close-btn p {
+    margin: 0;
+    text-align: center;
+    color: white;
+}
+
+.selling .inc-dec-quantity {
+    display: flex;
+    
+}
+
+.inc-dec-quantity input {
+    border: none;
+    outline: none;
+    width: 50px;
+    background-color: aquamarine;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+.inc-dec-quantity .inc-dec {
+    width: 40px;
+    height: 35px;
+    background-color: aquamarine;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.selling .perform {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    background-color: blueviolet;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selling .perform p {
+    color: white;
+    margin: 0;
+}
+
 
 
 
@@ -437,6 +553,8 @@
         margin-right: 10px;
     }
 }
+
+
 
 
 

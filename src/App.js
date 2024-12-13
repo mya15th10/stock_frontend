@@ -13,6 +13,8 @@ import { MyProvider }  from "./component/Context.js"
 import Navbar from "./component/Navbar.js";
 import Market from './component/Market';
 import PredictionPage from './component/Prediction';
+import Portfolio from "./component/Portfolio.js";
+import ProtectedPage from "./component/ProtectedPage.js";
 
 
 
@@ -30,9 +32,11 @@ function App() {
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/instruction" element={<Instruction />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<ProtectedPage> <Dashboard /> </ProtectedPage>} />
           <Route path="/market" element={<Market />} />
           <Route path="/prediction" element={<PredictionPage />} />
+          <Route path="/portfolio" element={<Portfolio />} />
 
         </Routes>
       </MyProvider >

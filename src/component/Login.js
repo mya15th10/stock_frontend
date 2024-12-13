@@ -5,26 +5,25 @@ import { MyContext } from "./Context.js"
 import { useTranslation } from "react-i18next";
 
 function Login() {
+    
     // Set order of component in Navbar
-    const { setOrder } = useContext(MyContext);
+    const { setOrder, SetIsLogin, isLogin, useBackend } = useContext(MyContext);
     useEffect(() => {
         setOrder(5);
     }, [])
+    
 
-    const { userName, setUserName } = useContext(MyContext);
-
-    const [_userName, _setUserName] = useState("");
+    const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("")
     const [remember, setRemember] = useState(false)
+    const [auth, setAuth] = useState(true);
 
     const { t } = useTranslation("login");
-
-    const {isLogin, SetIsLogin} = useContext(MyContext);
 
     const navigate = useNavigate();
 
     const handleUserNameChange = (event) => {
-        _setUserName(event.target.value);
+        setUserName(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -37,37 +36,45 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Email: ", _userName);
+        console.log("Email: ", userName);
         console.log("Password: ", password);
         console.log("Remember: ", remember);
 
-        // const loginData = {
-        //     email: userName,
-        //     password: password
-        // }
+        const loginData = {
+            username: userName,
+            password: password
+        }
 
-        // console.log(JSON.stringify(loginData));
+        console.log(JSON.stringify(loginData));
 
-        // const url = 'http://localhost:8080/test';
-        // fetch(url, {
-        //     method: "POST",
-        //     headers: {'Content-Type' : "application/json"},
-        //     body: JSON.stringify(loginData)
-        // }).then(res => console.log(res))
-        //     .then(data => { console.log("Success: ", data) })
-        //     .catch(error => { console.log("Error: ", error) })
+        const url = "http://localhost:8080/auth/login";
+        fetch(url, {
+            method: "POST",
+            headers: {'Content-Type' : "application/json"},
+            credentials: 'include',
+            body: JSON.stringify(loginData)
+        })
+        .then(res => {
+            if(!res.ok)
+                throw new Error("Request fail " + res.status)
+            
+            const jwt = res.headers.get("Authorization"); 
+            localStorage.setItem("accessToken", jwt)
+            console.log(jwt);
 
-        SetIsLogin(true);
-        setUserName(_userName);
+            SetIsLogin(true);
+            navigate("/dashboard");
+        })
+        .catch(error => { console.log(error); setAuth(false); if(useBackend === false) {SetIsLogin(true); navigate("/dashboard");} })
 
     }
 
-    useEffect(() => {
-        if(isLogin)
-            navigate("/dashboard");
-    }, [isLogin])
+    // useEffect(() => {
+    //     if(isLogin)
+    //         navigate("/dashboard");
+    // }, [isLogin])
 
-    
+
 
     return (
         <div className="login-page">
@@ -76,12 +83,14 @@ function Login() {
             <div className="login-section">
                 <div className="login-container">
                     <h2 className="login-title">{t("title")}</h2>
-
+                    <div className={`auth-fail ${auth === true? "auth-fail-hidden" : ""}`}>
+                        <p>Authentication failed</p>
+                    </div>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-frame">
                             <input type="text" 
                                    placeholder={t("username-placeholder")}
-                                   value={_userName}
+                                   value={userName}
                                    onChange={handleUserNameChange}
                             />
                         </div>

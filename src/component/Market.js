@@ -49,7 +49,7 @@ function Market() {
     };
     return (
         <div id="market-page">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="market-content">
                 <div className="top-section">
                     <div className="stock-table">

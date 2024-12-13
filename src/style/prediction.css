@@ -10,9 +10,15 @@
     margin-left: 250px; /* Để không bị sidebar đè lên */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
     .dashboard-content {
         margin-left: 80px; /* Khi sidebar thu nhỏ */
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard-content {
+        margin-left: 0px; /* Khi sidebar thu nhỏ */
     }
 }
 .prediction-container {
