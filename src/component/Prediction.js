@@ -33,8 +33,7 @@ function SideBar(props) {
         );
     }
 
-    // itemOrder represent the active card
-    const [itemOrder, setItemOrder] = useState(3); // Default to 3 for Stock Prediction
+    const [itemOrder, setItemOrder] = useState(3);
 
     return (
         <div className="sidebar responsive-sidebar">
@@ -69,48 +68,66 @@ const PredictionPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [recommendationSearch, setRecommendationSearch] = useState('');
     const [timeRange, setTimeRange] = useState('7d');
+    const [selectedStock, setSelectedStock] = useState(null);
 
-    // Set order in Navbar
     useEffect(() => {
         setOrder(5);
     }, [setOrder]);
 
-    // Check login status
     useEffect(() => {
         if (!isLogin) {
             navigate("/login");
         }
     }, [isLogin, navigate]);
 
-    // Sample data for price prediction chart
-    const predictedPriceData = {
-        '7d': [
-            { date: '2024-12-11', actual: 86.5, predicted: 87.2 },
-            { date: '2024-12-12', predicted: 87.8 },
-            { date: '2024-12-13', predicted: 88.3 },
-            { date: '2024-12-14', predicted: 88.9 },
-            { date: '2024-12-15', predicted: 89.2 },
-            { date: '2024-12-16', predicted: 89.8 },
-            { date: '2024-12-17', predicted: 90.1 }
-        ],
-        '30d': [
-            { date: '2024-12-11', actual: 86.5, predicted: 87.2 },
-            { date: '2024-12-15', predicted: 88.5 },
-            { date: '2024-12-20', predicted: 89.7 },
-            { date: '2024-12-25', predicted: 90.8 },
-            { date: '2024-12-30', predicted: 91.9 },
-            { date: '2025-01-05', predicted: 92.7 },
-            { date: '2025-01-10', predicted: 93.5 }
-        ],
-        '1y': [
-            { date: '2024-12', actual: 86.5, predicted: 87.2 },
-            { date: '2025-02', predicted: 89.5 },
-            { date: '2025-04', predicted: 91.8 },
-            { date: '2025-06', predicted: 93.4 },
-            { date: '2025-08', predicted: 95.2 },
-            { date: '2025-10', predicted: 96.8 },
-            { date: '2025-12', predicted: 98.5 }
-        ]
+    // Sample data for predictions
+    const predictData  = {
+        'FPT': {
+            '7d': [
+                { date: '2024-12-14', openPrice: 92.3, closePrice: 93.1 },
+                { date: '2024-12-15', openPrice: 92.8, closePrice: 93.5 },
+                { date: '2024-12-16', openPrice: 93.2, closePrice: 93.9 },
+                { date: '2024-12-17', openPrice: 93.6, closePrice: 94.2 },
+                { date: '2024-12-18', openPrice: 94.0, closePrice: 94.6 },
+                { date: '2024-12-19', openPrice: 94.3, closePrice: 94.9 },
+                { date: '2024-12-20', openPrice: 94.7, closePrice: 95.2 }
+            ],
+            '30d': [
+                // Data for 30 days
+                { date: '2024-12-14', openPrice: 92.3, closePrice: 93.1 },
+                { date: '2024-12-20', openPrice: 93.5, closePrice: 94.2 },
+                // ... more data
+            ],
+            '1y': [
+                // Data for 1 year
+                { date: '2024-12', openPrice: 92.3, closePrice: 93.1 },
+                { date: '2025-01', openPrice: 94.5, closePrice: 95.2 },
+                // ... more data
+            ]
+        },
+        'VNM': {
+            '7d': [
+                { date: '2024-12-14', openPrice: 86.5, closePrice: 87.2 },
+                { date: '2024-12-15', openPrice: 87.0, closePrice: 87.8 },
+                { date: '2024-12-16', openPrice: 87.5, closePrice: 88.1 },
+                { date: '2024-12-17', openPrice: 88.0, closePrice: 88.7 },
+                { date: '2024-12-18', openPrice: 88.4, closePrice: 89.1 },
+                { date: '2024-12-19', openPrice: 88.9, closePrice: 89.6 },
+                { date: '2024-12-20', openPrice: 89.3, closePrice: 90.0 }
+            ],
+            '30d': [
+                // Data for 30 days
+                { date: '2024-12-14', openPrice: 92.3, closePrice: 93.1 },
+                { date: '2024-12-20', openPrice: 93.5, closePrice: 94.2 },
+                // ... more data
+            ],
+            '1y': [
+                 // Data for 1 year
+                 { date: '2024-12', openPrice: 92.3, closePrice: 93.1 },
+                 { date: '2025-01', openPrice: 94.5, closePrice: 95.2 },
+                 // ... more data
+            ]
+        }
     };
 
     // Market trend data
@@ -124,18 +141,32 @@ const PredictionPage = () => {
         { date: '2024-12-07', volume: 1600000, trend: 89 }
     ];
 
-    // Stock predictions data
-    const stockPredictions = [
-        { symbol: 'VNM', openPrice: 86.5, closePrice: 87.2, confidence: 0.85 },
-        { symbol: 'FPT', openPrice: 92.3, closePrice: 93.1, confidence: 0.78 },
-        { symbol: 'VIC', openPrice: 98.2, closePrice: 99.0, confidence: 0.82 }
-    ];
-
     const topRecommendations = [
         { symbol: 'VNM', action: 'BUY', confidence: 0.9, currentPrice: 86.00, targetPrice: 90.00 },
         { symbol: 'FPT', action: 'HOLD', confidence: 0.85, currentPrice: 92.00, targetPrice: 92.50 },
         { symbol: 'VIC', action: 'SELL', confidence: 0.88, currentPrice: 98.00, targetPrice: 95.00 }
     ];
+    //  recommendationData cho từng mốc thời gian
+    const recommendationData = {
+        'FPT': {
+            '7d': { action: 'BUY', currentPrice: 92.00, targetPrice: 94.50, confidence: 0.92 },
+            '30d': { action: 'HOLD', currentPrice: 92.00, targetPrice: 92.50, confidence: 0.85 },
+            '1y': { action: 'SELL', currentPrice: 92.00, targetPrice: 90.00, confidence: 0.78 }
+        },
+        'VNM': {
+            '7d': { action: 'SELL', currentPrice: 86.00, targetPrice: 84.00, confidence: 0.88 },
+            '30d': { action: 'BUY', currentPrice: 86.00, targetPrice: 90.00, confidence: 0.90 },
+            '1y': { action: 'HOLD', currentPrice: 86.00, targetPrice: 86.50, confidence: 0.82 }
+        }
+        // Thêm data cho các mã khác
+    };
+    const handleSearch = (query) => {
+        setSearchQuery(query);
+        const stock = Object.keys(predictData).find(
+            symbol => symbol.toLowerCase() === query.toLowerCase()
+        );
+        setSelectedStock(stock);
+    };
 
     const getActionColor = (action) => {
         switch(action) {
@@ -155,158 +186,171 @@ const PredictionPage = () => {
                     <div className="prediction-section">
                         <div className="prediction-header">
                             <h2 className="text-2xl font-bold text-gray-200">Price Prediction</h2>
-                            <div className="time-range-selector">
-                                <button 
-                                    className={`time-button ${timeRange === '7d' ? 'active' : ''}`}
-                                    onClick={() => setTimeRange('7d')}
-                                >
-                                    7 Days
-                                </button>
-                                <button 
-                                    className={`time-button ${timeRange === '30d' ? 'active' : ''}`}
-                                    onClick={() => setTimeRange('30d')}
-                                >
-                                    30 Days
-                                </button>
-                                <button 
-                                    className={`time-button ${timeRange === '1y' ? 'active' : ''}`}
-                                    onClick={() => setTimeRange('1y')}
-                                >
-                                    1 Year
-                                </button>
+                            <div className="search-time-container">
+                                <input
+                                    type="text"
+                                    placeholder="Tìm mã cổ phiếu..."
+                                    value={searchQuery}
+                                    onChange={(e) => handleSearch(e.target.value)}
+                                    className="quick-search"
+                                />
+                                <div className="time-range-selector">
+                                    <button 
+                                        className={`time-button ${timeRange === '7d' ? 'active' : ''}`}
+                                        onClick={() => setTimeRange('7d')}
+                                    >
+                                        7 Days
+                                    </button>
+                                    <button 
+                                        className={`time-button ${timeRange === '30d' ? 'active' : ''}`}
+                                        onClick={() => setTimeRange('30d')}
+                                    >
+                                        30 Days
+                                    </button>
+                                    <button 
+                                        className={`time-button ${timeRange === '1y' ? 'active' : ''}`}
+                                        onClick={() => setTimeRange('1y')}
+                                    >
+                                        1 Year
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         {/* Price Prediction Chart */}
-                        <div className="chart-container">
-                            <ResponsiveContainer width="100%" height={300}>
-                                <LineChart data={predictedPriceData[timeRange]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="date" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Line type="monotone" dataKey="actual" stroke="#8884d8" name="Actual Price" strokeWidth={2} />
-                                    <Line type="monotone" dataKey="predicted" stroke="#82ca9d" name="Predicted Price" strokeWidth={2} />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </div>
+                        {selectedStock && (
+                            <>
+                                {/* Trading Recommendations cho mã được chọn */}
+                                <div className="recommendation-section mb-6">
+                                    <h2 className="text-2xl font-bold text-gray-200 mb-4">
+                                        Trading Recommendations for {selectedStock}
+                                    </h2>
+                                    <div className="recommendation-table-container">
+                                        <table className="prediction-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Time Frame</th>
+                                                    <th>Action</th>
+                                                    <th>Current Price</th>
+                                                    <th>Target Price</th>
+                                                    <th>Confidence</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {['7d', '30d', '1y'].map((timeframe) => {
+                                                    const recommendation = recommendationData[selectedStock][timeframe];
+                                                    return (
+                                                        <tr key={timeframe}>
+                                                            <td className="date-color">
+                                                                {timeframe === '7d' ? '7 Days' :
+                                                                timeframe === '30d' ? '30 Days' : '1 Year'}
+                                                            </td>
+                                                            <td className={getActionColor(recommendation.action)}>
+                                                                {recommendation.action}
+                                                            </td>
+                                                            <td className="col-color">
+                                                                ${recommendation.currentPrice}
+                                                            </td>
+                                                            <td className="col-color">
+                                                                ${recommendation.targetPrice}
+                                                            </td>
+                                                            <td className="col-color">
+                                                                {(recommendation.confidence * 100).toFixed(1)}%
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {/* Price Prediction Chart */}
+                                <div className="chart-container">
+                                    <h3 className="text-xl font-bold text-gray-200 mb-4">Price Prediction</h3>
+                                    <ResponsiveContainer width="100%" height={300}>
+                                        <LineChart 
+                                            data={predictData[selectedStock][timeRange]} 
+                                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                        >
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis dataKey="date" />
+                                            <YAxis />
+                                            <Tooltip />
+                                            <Legend />
+                                            <Line type="monotone" dataKey="openPrice" stroke="#8884d8" name="Open Price" strokeWidth={2} />
+                                            <Line type="monotone" dataKey="closePrice" stroke="#82ca9d" name="Close Price" strokeWidth={2} />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </div>
 
-                        {/* Market Trend Chart */}
-                        <div className="chart-container">
-                            <h3 className="text-xl font-bold text-gray-200 mb-4 mt-6">Market Trend Analysis</h3>
-                            <ResponsiveContainer width="100%" height={300}>
-                                <AreaChart data={marketTrendData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                                    <defs>
-                                        <linearGradient id="colorTrend" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                                        </linearGradient>
-                                    </defs>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis dataKey="date" />
-                                    <YAxis yAxisId="left" />
-                                    <YAxis yAxisId="right" orientation="right" />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Area 
-                                        yAxisId="left"
-                                        type="monotone" 
-                                        dataKey="volume" 
-                                        stroke="#8884d8" 
-                                        fillOpacity={1} 
-                                        fill="url(#colorTrend)" 
-                                        name="Trading Volume"
-                                    />
-                                    <Line 
-                                        yAxisId="right"
-                                        type="monotone" 
-                                        dataKey="trend" 
-                                        stroke="#82ca9d" 
-                                        name="Price Trend" 
-                                        strokeWidth={2}
-                                    />
-                                </AreaChart>
-                            </ResponsiveContainer>
-                        </div>
-
-                        {/* Stock Predictions Table */}
-                        <div className="search-container mb-6">
-                            <input
-                                type="text"
-                                placeholder="Search stock symbol..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="prediction-search"
-                            />
-                        </div>
-
-                        <div className="prediction-table-container">
-                            <table className="prediction-table">
-                                <thead>
-                                    <tr>
-                                        <th>Symbol</th>
-                                        <th>Predicted Open</th>
-                                        <th>Predicted Close</th>
-                                        <th>Confidence</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {stockPredictions
-                                        .filter(stock => stock.symbol.toLowerCase().includes(searchQuery.toLowerCase()))
-                                        .map((stock, index) => (
-                                            <tr key={index}>
-                                                <td className="symbol-color">{stock.symbol}</td>
-                                                <td className="col-color">${stock.openPrice}</td>
-                                                <td className="col-color">${stock.closePrice}</td>
-                                                <td className="col-color">{(stock.confidence * 100).toFixed(1)}%</td>
-                                            </tr>
-                                        ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                {/* Market Trend Chart */}
+                                <div className="chart-container mt-8">
+                                    <h3 className="text-xl font-bold text-gray-200 mb-4">Market Trend Analysis</h3>
+                                    <ResponsiveContainer width="100%" height={300}>
+                                        <AreaChart data={marketTrendData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                            <defs>
+                                                    <linearGradient id="colorTrend" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                                                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <CartesianGrid strokeDasharray="3 3" />
+                                                <XAxis dataKey="date" />
+                                                <YAxis yAxisId="left" />
+                                                <YAxis yAxisId="right" orientation="right" />
+                                                <Tooltip />
+                                                <Legend />
+                                                <Area 
+                                                    yAxisId="left"
+                                                    type="monotone" 
+                                                    dataKey="volume" 
+                                                    stroke="#8884d8" 
+                                                    fillOpacity={1} 
+                                                    fill="url(#colorTrend)" 
+                                                    name="Trading Volume"
+                                                />
+                                                <Line 
+                                                    yAxisId="right"
+                                                    type="monotone" 
+                                                    dataKey="trend" 
+                                                    stroke="#82ca9d" 
+                                                    name="Price Trend" 
+                                                    strokeWidth={2}
+                                                />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </div>
+                                {/* Daily Predictions Table */}
+                                <div className="prediction-table-container mt-6">
+                                    <h3 className="text-xl font-bold text-gray-200 mb-4">Daily Price Predictions</h3>
+                                    <table className="prediction-table">
+                                        <thead>
+                                                <tr>
+                                                    <th>Ngày</th>
+                                                    <th>Giá mở cửa dự đoán</th>
+                                                    <th>Giá đóng cửa dự đoán</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {predictData[selectedStock][timeRange].map((day) => (
+                                                    <tr key={day.date}>
+                                                        <td className="date-color">{day.date}</td>
+                                                        <td className="col-color">${day.openPrice}</td>
+                                                        <td className="col-color">${day.closePrice}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </>
+                        )}
                     </div>
 
-                    {/* Trading Recommendations Section */}
-                    <div className="recommendation-section">
-                        <h2 className="text-2xl font-bold text-gray-200 mb-4">Trading Recommendations</h2>
-                        <div className="search-container mb-6">
-                            <input
-                                type="text"
-                                placeholder="Search recommendations..."
-                                value={recommendationSearch}
-                                onChange={(e) => setRecommendationSearch(e.target.value)}
-                                className="prediction-search"
-                            />
-                        </div>
 
-                        <div className="recommendation-table-container">
-                            <table className="prediction-table">
-                                <thead>
-                                    <tr>
-                                        <th>Symbol</th>
-                                        <th>Action</th>
-                                        <th>Current Price</th>
-                                        <th>Target Price</th>
-                                        <th>Confidence</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {topRecommendations
-                                        .filter(stock => stock.symbol.toLowerCase().includes(recommendationSearch.toLowerCase()))
-                                        .map((recommendation, index) => (
-                                            <tr key={index}>
-                                                <td className="symbol-color">{recommendation.symbol}</td>
-                                                <td className={getActionColor(recommendation.action)}>{recommendation.action}</td>
-                                                <td className="col-color">${recommendation.currentPrice}</td>
-                                                <td className="col-color">${recommendation.targetPrice}</td>
-                                                <td className="col-color">{(recommendation.confidence * 100).toFixed(1)}%</td>
-                                            </tr>
-                                        ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+
+
+                                
 
                     {/* Top 10 Recommendations */}
                     <div className="top-recommendations-section">
@@ -345,3 +389,5 @@ const PredictionPage = () => {
 };
 
 export default PredictionPage;
+                                                
+                                                

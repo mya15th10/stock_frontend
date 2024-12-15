@@ -15,6 +15,8 @@ import Market from './component/Market';
 import PredictionPage from './component/Prediction';
 import Portfolio from "./component/Portfolio.js";
 import ProtectedPage from "./component/ProtectedPage.js";
+import PersonalInfo from "./component/PersonalInfo.js";
+import TransactionHistory from "./component/TransactionHistory.js";
 
 
 
@@ -37,6 +39,8 @@ function App() {
           <Route path="/market" element={<Market />} />
           <Route path="/prediction" element={<PredictionPage />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/personal-info" element={<ProtectedPage><PersonalInfo /></ProtectedPage>} />
+          <Route path="/transaction-history" element={<ProtectedPage><TransactionHistory /></ProtectedPage>} />
 
         </Routes>
       </MyProvider >

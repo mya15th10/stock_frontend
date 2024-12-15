@@ -78,7 +78,7 @@ function SideBar(props) {
     return (
         <div className="sidebar responsive-sidebar">
             <div ></div>
-            <Link onClick={(e) => { setItemOrder(1);}} >
+            <Link onClick={(e) => { setItemOrder(1);}} to="/dashboard" >
                 <Card icon={itemOrder === 1 ? dashboardActive : dashboard} text="Dashboard" active={itemOrder === 1} />
             </Link>
             <Link onClick={(e) => {setItemOrder(2);}} to="/portfolio" >
@@ -87,10 +87,10 @@ function SideBar(props) {
             <Link onClick={() => setItemOrder(3)} to="/prediction" >
                 <Card icon={itemOrder === 3 ? predictionActive : prediction} text="Stock prediction" active={itemOrder === 3} />
             </Link>
-            <Link onClick={() => setItemOrder(4)} to="#" >
+            <Link onClick={() => setItemOrder(4)} to="/transaction-history" >
                 <Card icon={itemOrder === 4 ? historyActive : history} text="Transaction history" active={itemOrder === 4} />
             </Link>
-            <Link onClick={() => setItemOrder(5)} to="#" >
+            <Link onClick={() => setItemOrder(5)} to="/personal-info" >
                 <Card icon={itemOrder === 5 ? updateActive : update} text="Update personal information" active={itemOrder === 5} />
             </Link>
 

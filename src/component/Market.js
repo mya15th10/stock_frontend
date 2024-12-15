@@ -1,12 +1,10 @@
 import "../style/market.css"
 import { useContext, useEffect, useState } from "react";
 import { MyContext } from "./Context";
-import Navbar from "./Navbar";
 import { ResponsiveContainer, AreaChart, XAxis, YAxis, Area, Tooltip } from 'recharts';
 import { Search } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import { historicalData } from '../data/market_datahistory';
 
 function Market() {
     const { setOrder } = useContext(MyContext);
@@ -16,10 +14,9 @@ function Market() {
         { symbol: 'VIC', price: 98000, change: 0.8, volume: 1500000 },
     ]);
     const [selectedStock, setSelectedStock] = useState(null);
-    const [historicalData, setHistoricalData] = useState([]);
+    const [filteredData, setFilteredData] = useState(historicalData);
     const [searchSymbol, setSearchSymbol] = useState('');
-    const navigate = useNavigate(); // Hook để điều hướng
-
+    const navigate = useNavigate();
 
     const tabs = [
         "Lịch sử giá",
@@ -29,27 +26,34 @@ function Market() {
         "Khớp lệnh theo phiên",
         "Cổ đông & Nội bộ"
     ];
+
     useEffect(() => {
         setOrder(1);
-        fetchHistoricalData('VNINDEX');
     }, [setOrder]);
 
-    const fetchHistoricalData = async (symbol) => {
-        try {
-            const response = await axios.get(`http://localhost:8080/api/stockprice/history/${symbol}`);
-            setHistoricalData(response.data);
-        } catch (error) {
-            console.error('Error fetching historical data:', error);
-        }
-    };
     const handleSearch = () => {
         if (searchSymbol) {
-            fetchHistoricalData(searchSymbol.toUpperCase());
+            const filtered = historicalData.filter(item => 
+                item.code?.toLowerCase() === searchSymbol.toUpperCase()
+            );
+            setFilteredData(filtered.length > 0 ? filtered : []);
+            
+            // Nếu tìm thấy data, set selectedStock
+            if (filtered.length > 0) {
+                setSelectedStock({
+                    symbol: searchSymbol.toUpperCase(),
+                    price: filtered[0].close_price,
+                    change: filtered[0].change_percent,
+                    volume: filtered[0].volume_detail
+                });
+            }
+        } else {
+            setFilteredData(historicalData);
+            setSelectedStock(null);
         }
     };
     return (
         <div id="market-page">
-            {/* <Navbar /> */}
             <div className="market-content">
                 <div className="top-section">
                     <div className="stock-table">
@@ -83,12 +87,17 @@ function Market() {
                             <>
                                 <h2>{selectedStock.symbol}</h2>
                                 <ResponsiveContainer width="100%" height={400}>
-                                    <AreaChart data={historicalData}>
+                                    <AreaChart data={filteredData}>
                                         <XAxis dataKey="date" />
                                         <YAxis />
                                         <Tooltip />
-                                        <Area type="monotone" dataKey="closePrice" 
-                                              stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
+                                        <Area 
+                                            type="monotone" 
+                                            dataKey="close_price" 
+                                            stroke="#82ca9d" 
+                                            fill="#82ca9d" 
+                                            fillOpacity={0.3} 
+                                        />
                                     </AreaChart>
                                 </ResponsiveContainer>
                             </>
@@ -121,9 +130,14 @@ function Market() {
                                     type="text" 
                                     value={searchSymbol}
                                     onChange={(e) => setSearchSymbol(e.target.value)}
-                                    placeholder="VNINDEX"
+                                    onKeyPress={(e) => {
+                                        if (e.key === 'Enter') {
+                                            handleSearch();
+                                        }
+                                    }}
+                                    placeholder="Nhập mã cổ phiếu..."
                                 />
-                                <Search className="search-icon" size={20} />
+                                <Search className="search-icon" size={20} onClick={handleSearch} />
                             </div>
                         </div>
 
@@ -137,8 +151,9 @@ function Market() {
                         <div className="action-buttons">
                             <button className="btn-view" onClick={handleSearch}>Xem</button>
                             <button className="btn-export">Xuất Excel</button>
-                            <button className="btn-buy-stock"
-                            onClick={() => navigate('/login')}>Mua cổ phiếu</button>
+                            <button className="btn-buy-stock" onClick={() => navigate('/login')}>
+                                Mua cổ phiếu
+                            </button>
                         </div>
                     </div>
 
@@ -166,21 +181,21 @@ function Market() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {historicalData.map(data => (
-                                    <tr key={data.date}>
-                                    <td>{data.date}</td>
-                                    <td>{data.closePrice?.toLocaleString()}</td>
-                                    <td>{data.closePrice?.toLocaleString()}</td>
-                                    <td className={data.change >= 0 ? 'increase' : 'decrease'}>
-                                        {data.change}%
-                                    </td>
-                                    <td>{data.volume?.toLocaleString()}</td>
-                                    <td>{((data.volume * data.closePrice) / 1000000000).toFixed(2)}</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>{data.openPrice?.toLocaleString()}</td>
-                                    <td>{data.highPrice?.toLocaleString()}</td>
-                                    <td>{data.lowPrice?.toLocaleString()}</td>
+                                {filteredData.map(data => (
+                                    <tr key={data.session_id}>
+                                        <td>{`${data.year}-${String(data.month).padStart(2, '0')}-${String(data.day_of_month).padStart(2, '0')}`}</td>
+                                        <td>{data.close_price?.toLocaleString()}</td>
+                                        <td>{data.adjust_price?.toLocaleString()}</td>
+                                        <td className={data.change_percent >= 0 ? 'increase' : 'decrease'}>
+                                            {data.change_percent}%
+                                        </td>
+                                        <td>{data.volume_detail?.toLocaleString()}</td>
+                                        <td>{((data.volume_detail * data.close_price) / 1000000000).toFixed(2)}</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>{data.open_price?.toLocaleString()}</td>
+                                        <td>{data.high_price?.toLocaleString()}</td>
+                                        <td>{data.low_price?.toLocaleString()}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -193,6 +208,3 @@ function Market() {
 }
 
 export default Market;
-
-                
-            
