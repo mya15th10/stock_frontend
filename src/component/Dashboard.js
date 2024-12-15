@@ -11,12 +11,14 @@ import portfolio from "../assets/dashboard/sidebar/portfolio.svg"
 import prediction from "../assets/dashboard/sidebar/prediction.svg"
 import history from "../assets/dashboard/sidebar/history.svg"
 import update from "../assets/dashboard/sidebar/update.svg"
+import budget from "../assets/dashboard/sidebar/budget.svg"
 
 import dashboardActive from "../assets/dashboard/sidebar/dashboard-active.svg"
 import portfolioActive from "../assets/dashboard/sidebar/portfolio-active.svg"
 import predictionActive from "../assets/dashboard/sidebar/prediction-active.svg"
 import historyActive from "../assets/dashboard/sidebar/history-active.svg"
 import updateActive from "../assets/dashboard/sidebar/update-active.svg"
+import budgetActive from "../assets/dashboard/sidebar/budget-active.svg"
 
 import logout from "../assets/dashboard/sidebar/logout.svg"
 import option from "../assets/dashboard/sidebar/option.svg"
@@ -26,8 +28,7 @@ import income from "../assets/dashboard/dashboard-content/income.png"
 import expenses from "../assets/dashboard/dashboard-content/expenses.png"
 import saving from "../assets/dashboard/dashboard-content/saving.png"
 
-import leftNav from "../assets/dashboard/view-portfolio/left-nav.svg"
-import rightNav from "../assets/dashboard/view-portfolio/right-nav.svg"
+
 
 
 import {
@@ -92,6 +93,9 @@ function SideBar(props) {
             </Link>
             <Link onClick={() => setItemOrder(5)} to="/personal-info" >
                 <Card icon={itemOrder === 5 ? updateActive : update} text="Update personal information" active={itemOrder === 5} />
+            </Link>
+            <Link onClick={() => setItemOrder(6)} to="/budget">
+                <Card icon={itemOrder === 6 ? budgetActive : budget} text="Budget" active={itemOrder === 6} />
             </Link>
 
             <div onClick={() => { props.setLogout() }} className="logout">

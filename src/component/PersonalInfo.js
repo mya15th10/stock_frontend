@@ -9,12 +9,14 @@ import portfolio from "../assets/dashboard/sidebar/portfolio.svg"
 import prediction from "../assets/dashboard/sidebar/prediction.svg"
 import history from "../assets/dashboard/sidebar/history.svg"
 import update from "../assets/dashboard/sidebar/update.svg"
+import budget from "../assets/dashboard/sidebar/budget.svg"
 
 import dashboardActive from "../assets/dashboard/sidebar/dashboard-active.svg"
 import portfolioActive from "../assets/dashboard/sidebar/portfolio-active.svg"
 import predictionActive from "../assets/dashboard/sidebar/prediction-active.svg"
 import historyActive from "../assets/dashboard/sidebar/history-active.svg"
 import updateActive from "../assets/dashboard/sidebar/update-active.svg"
+import budgetActive from "../assets/dashboard/sidebar/budget-active.svg"
 
 import logout from "../assets/dashboard/sidebar/logout.svg"
 
@@ -49,6 +51,10 @@ function SideBar(props) {
             <Link to="/personal-info" onClick={() => setItemOrder(5)}>
                 <Card icon={itemOrder === 5 ? updateActive : update} text="Update personal information" active={itemOrder === 5} />
             </Link>
+            <Link onClick={() => setItemOrder(6)} to="/budget">
+                <Card icon={itemOrder === 6 ? budgetActive : budget} text="Budget" active={itemOrder === 6} />
+            </Link>
+
 
             <div onClick={props.setLogout} className="logout">
                 <img alt="" src={logout}></img>

@@ -17,6 +17,7 @@ import Portfolio from "./component/Portfolio.js";
 import ProtectedPage from "./component/ProtectedPage.js";
 import PersonalInfo from "./component/PersonalInfo.js";
 import TransactionHistory from "./component/TransactionHistory.js";
+import Budget from "./component/Budget.js";
 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/personal-info" element={<ProtectedPage><PersonalInfo /></ProtectedPage>} />
           <Route path="/transaction-history" element={<ProtectedPage><TransactionHistory /></ProtectedPage>} />
+          <Route path="/budget" element={<ProtectedPage><Budget /></ProtectedPage>} />
 
         </Routes>
       </MyProvider >

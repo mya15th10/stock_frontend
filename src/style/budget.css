@@ -1,0 +1,138 @@
+#budget .my-budget-container {
+  width: 100vw;
+  height: 100vh;
+  margin-left: 250px;
+  padding-top: 150px;
+  padding-left: 70px;
+  padding-right: 60px;
+  position: fixed;
+}
+
+.my-budget {
+  width: 80%;
+  height: 780px;
+  background-color: #20222d;
+  color: white;
+  position: fixed;
+  padding: 45px 50px;
+  border-radius: 20px;
+}
+
+.my-budget h1 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.balance {
+  width: 300px;
+  height: 70px;
+  background-color: #5eacfa;
+  border-radius: 20px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.balance .hide-show {
+  position: absolute;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+}
+
+.balance p {
+  font-size: 1.35rem;
+  font-weight: bold;
+}
+
+.deposit-withdraw-container {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.deposit-withdraw {
+  position: relative;
+  width: 420px;
+  height: 450px;
+  background-color: #bbbdc0;
+  border-radius: 20px;
+  padding: 20px 30px;
+  color: black;
+}
+
+.deposit-withdraw h2 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.deposit-withdraw-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.deposit-withdraw-input-group input {
+  width: 70%;
+  height: 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+}
+
+.deposit-withdraw-input-group label {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #313234;
+  margin-bottom: 7px;
+}
+
+.suggest {
+  display: flex;
+  gap: 10px;
+}
+
+.suggest p {
+  padding: 3px 5px;
+}
+
+.suggest p:hover {
+  background-color: #5eacfa;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.method {
+  position: absolute;
+  bottom: 100px;
+}
+
+.method p {
+  border-bottom: 20px;
+  background-color: #3c3d379e;
+  color: white;
+  padding: 7px 12px;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+p.active-method {
+  background-color: black;
+}
+
+.depost-withdraw-btn {
+  width: 120px;
+  height: 40px;
+  background-color: mediumspringgreen;
+  cursor: pointer;
+  position: absolute;
+  bottom: 17px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
