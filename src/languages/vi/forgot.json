@@ -3,5 +3,16 @@
     "instruction-label": "Vui lòng nhập địa chỉ email mà bạn muốn nhận thông tin đặt lại mật khẩu",
     "reset-btn": "Khôi phục",
     "login": "Đăng nhập",
-    "sign-up": "Đăng kí"
+    "sign-up": "Đăng kí",
+    "otp-instruction": "Vui lòng nhập mã otp được gửi qua email",
+    "New-password": "Mật khẩu mới",
+    "Confirm-password": "Xác nhận mật khẩu",
+    "Enter new password": "Nhập mật khẩu mới",
+    "Confirm password": "Xác nhận mật khẩu mới",
+    "OTP invalid": "Mã OTP không hợp lệ",
+    "Email not exist": "Email không tồn tại",
+    "Your password has been reset successfully": "Mật khẩu của bạn đã được khôi phục thành công",
+    "SUCCESS": "THÀNH CÔNG",
+    "Continue": "Tiếp tục",
+    "Password not match": "Mật khẩu không khớp"
 }

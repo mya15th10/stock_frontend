@@ -107,6 +107,12 @@ function Budget() {
 
     const [showBalance, setShowBalance] = useState(true);
 
+    const bankList = ["MbBank", "Vietcombank", "Sacombank", "Siuuuu"]
+    const [bank, setBank] = useState(bankList[0]);
+    const [isShow, setIsShow] = useState(false);
+    const [bank_, setBank_] = useState(bankList[0]);
+    const [isShow_, setIsShow_] = useState(false);
+
     const [depositAmount, setDepositAmount] = useState(0);
     const [withdrawAmount, setWithdrawAmount] = useState(0);
 
@@ -182,9 +188,14 @@ function Budget() {
                                 ))}
                             </div>
                             <div className="method">
-                                <p onClick={() => setActiveMethod(1)} className={activeMethod === 1 ? "active-method" : ""}>MBBank</p>
-                                <p onClick={() => setActiveMethod(2)} className={activeMethod === 2 ? "active-method" : ""}>VietcomBank</p>
-                                <p onClick={() => setActiveMethod(3)} className={activeMethod === 3 ? "active-method" : ""}>Momo</p>
+                                <p className="choosing">{bank}</p>
+                                <p className="choosing" onClick={() => {setIsShow(!isShow);}}>+</p>
+                                {isShow && (
+                                    bankList.map(_bank => (
+                                        <p onClick={() => {setBank(_bank); setIsShow(!isShow)}} className="bank-list">{_bank}</p>
+                                    ))
+                                )}
+                                
                             </div>
 
                             <div onClick={depositBtn} className="depost-withdraw-btn">
@@ -204,9 +215,14 @@ function Budget() {
                                 ))}
                             </div>
                             <div className="method">
-                                <p onClick={() => setActiveMethod(1)} className={activeMethod === 1 ? "active-method" : ""}>MBBank</p>
-                                <p onClick={() => setActiveMethod(2)} className={activeMethod === 2 ? "active-method" : ""}>VietcomBank</p>
-                                <p onClick={() => setActiveMethod(3)} className={activeMethod === 3 ? "active-method" : ""}>Momo</p>
+                                <p className="choosing">{bank_}</p>
+                                <p className="choosing" onClick={() => {setIsShow_(!isShow_);}}>+</p>
+                                {isShow_ && (
+                                    bankList.map(_bank => (
+                                        <p onClick={() => {setBank_(_bank); setIsShow_(!isShow_)}} className="bank-list">{_bank}</p>
+                                    ))
+                                )}
+                                
                             </div>
 
                             <div onClick={withdrawBtn} className="depost-withdraw-btn">

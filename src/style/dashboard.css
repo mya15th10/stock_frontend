@@ -394,7 +394,7 @@
 }
 
 .selling {
-    background-color: white;
+    background-color: #dce6ec;
     width: 500px;
     height: 300px;
     position: relative;
@@ -418,7 +418,7 @@
 .selling .close-btn {
     width: 50px;
     height: 40px;
-    background-color: #11141d;
+    background-color: #25374c;
     position: absolute;
     right: 0px;
     top: 0;
@@ -436,6 +436,7 @@
 
 .selling .inc-dec-quantity {
     display: flex;
+    color: white;
     
 }
 
@@ -443,21 +444,23 @@
     border: none;
     outline: none;
     width: 50px;
-    background-color: aquamarine;
+    background-color: #4f6d81;
     border-left: 1px solid black;
     border-right: 1px solid black;
     text-align: center;
+    color: white;
 }
 
 .inc-dec-quantity .inc-dec {
     width: 40px;
     height: 35px;
-    background-color: aquamarine;
+    background-color: #4f6d81;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    user-select: none;
 }
 
 .selling .perform {
@@ -466,7 +469,7 @@
     position: absolute;
     bottom: 12px;
     right: 20px;
-    background-color: blueviolet;
+    background-color: #25374c;
     border-radius: 5px;
     cursor: pointer;
     display: flex;

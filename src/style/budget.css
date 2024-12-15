@@ -106,22 +106,33 @@
 
 .method {
   position: absolute;
-  bottom: 100px;
+  top: 140px;
 }
 
 .method p {
   border-bottom: 20px;
-  background-color: #3c3d379e;
+  background-color: #1c1d1996;
   color: white;
   padding: 7px 12px;
   text-align: center;
   border-radius: 20px;
   cursor: pointer;
+  width: 150px;
+  user-select: none;
+}
+
+.method p:hover {
+  background-color: #1c1d19;
 }
 
 p.active-method {
   background-color: black;
 }
+
+p.choosing {
+  background-color: #1c1d19;
+}
+
 
 .depost-withdraw-btn {
   width: 120px;
@@ -135,4 +146,5 @@ p.active-method {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  user-select: none;
 }

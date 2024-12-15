@@ -99,8 +99,8 @@ function Signup() {
 			<div className={success ? "signup-success": "signup-non-success"}>
 				<div className="signup-success-container">
 					<img alt="" src={SuccessIcon}></img>
-					<h2>{t("success")}</h2>
-					<p>{t("success-notification")}</p>
+					<h2>{t("SUCCESS")}</h2>
+					<p>{t("Account signed up successfully")}</p>
 					<div onClick={() => navigate("/login")} className="signup-success-btn">
 						<p>{t("continue")}</p>
 					</div>
@@ -125,7 +125,7 @@ function Signup() {
                     	</div>
 						<div className="signup-input-frame">
                         	<input onChange={handleRePasswordChange} type="password" placeholder={t("re-password-placeholder")}></input>
-							<p className={error === 4? "" : "error-hidden"}>Password not match</p>
+							<p className={error === 4? "" : "error-hidden"}>{t("Password not match")}</p>
                     	</div>
 
 						<button onClick={handleSubmit} className="signup-button" type="submit">{t("signup-btn")}</button>

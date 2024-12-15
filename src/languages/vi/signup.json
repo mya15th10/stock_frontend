@@ -5,5 +5,8 @@
     "password-placeholder": "Mật khẩu",
     "re-password-placeholder": "Nhập lại mật khẩu",
     "signup-btn": "Đăng kí",
-    "back-login": "Trở về đăng nhập"
+    "back-login": "Trở về đăng nhập",
+    "SUCCESS": "THÀNH CÔNG",
+    "Account signed up successfully": "Tài khoản đăng ký thành công",
+    "Password not match": "Mật khẩu không khớp"
 }

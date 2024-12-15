@@ -5,5 +5,7 @@
     "remember-me": "Duy trì đăng nhập",
     "login-btn": "Đăng nhập",
     "forgot-password": "Quên mật khẩu",
-    "create-account": "Tạo tài khoản mới"
+    "create-account": "Tạo tài khoản mới",
+    "Authentication failed": "Xác thực thất bại",
+    "password not match": "Mật khẩu không khớp"
 }

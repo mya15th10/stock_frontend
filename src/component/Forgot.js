@@ -131,10 +131,10 @@ function Forgot() {
             <div className={stage === 4 ? "forgot-success": "forgot-non-success"}>
 				<div className="forgot-success-container">
 					<img alt="" src={SuccessIcon}></img>
-					<h2>SUCCESS</h2>
-					<p>message</p>
+					<h2>{t("SUCCESS")}</h2>
+					<p>{t("Your password has been reset successfully")}</p>
 					<div onClick={() => navigate("/login")} className="forgot-success-btn">
-						<p>Continue</p>
+						<p>{t("Continue")}</p>
 					</div>
 				</div>
 			</div>
@@ -148,7 +148,7 @@ function Forgot() {
                         <div className="forgot-input-frame">
                             <label htmlFor="email-forgot">{t("instruction-label")}</label>
                         	<input onChange={handleEmailChange} type="email" id="email-forgot" placeholder="Email"></input>
-                            <p className={error === true ? "forgot-error" : "forgot-error-hidden"}>Email not exist</p>
+                            <p className={error === true ? "forgot-error" : "forgot-error-hidden"}>{t("Email not exist")}</p>
                     	</div>
                         <button onClick={handEmailSubmit} className="forgot-button" type="submit">{t("reset-btn")}</button>
                         <hr className="horizontal-line"></hr>
@@ -166,7 +166,7 @@ function Forgot() {
                         <div className="forgot-input-frame">
                             <label htmlFor="otp">{t("otp-instruction")}</label>
                         	<input onChange={handleOtpChange} type="text" id="otp" placeholder="OTP"></input>
-                            <p className={error === true? "forgot-error" : "forgot-error-hidden"}>OTP invalid</p>
+                            <p className={error === true? "forgot-error" : "forgot-error-hidden"}>{t("OTP invalid")}</p>
                     	</div>
                         <button onClick={handleOtpSubmit} className="forgot-button" type="submit">{t("reset-btn")}</button>
                         <hr className="horizontal-line"></hr>
@@ -182,14 +182,14 @@ function Forgot() {
                 <div className={`forgot-container ${stage !== 3 ? "hidden" : ""}`}>
                     <h2 className="forgot-title">{t("password-reset")}</h2>
                     <div className="forgot-input-frame">
-                        <label className="new-password" htmlFor="new-password">Enter new password</label>
-                        <input onChange={handlePasswordChange} type="password" id="new-password" placeholder="New password"></input>
+                        <label className="new-password" htmlFor="new-password">{t("Enter new password")}</label>
+                        <input onChange={handlePasswordChange} type="password" id="new-password" placeholder={t("New-password")}></input>
                         
                     </div>
                     <div className="forgot-input-frame">
-                        <label className="new-password" htmlFor="confirm-new-password">Confirm password</label>
-                        <input onChange={handleRePasswordChange} type="password" id="confirm-new-password" placeholder="Confirm password"></input>
-                        <p className={error === true? "forgot-error" : "forgot-error-hidden"}>Password not match</p>
+                        <label className="new-password" htmlFor="confirm-new-password">{t("Confirm password")}</label>
+                        <input onChange={handleRePasswordChange} type="password" id="confirm-new-password" placeholder={t("Confirm-password")}></input>
+                        <p className={error === true? "forgot-error" : "forgot-error-hidden"}>{t("Password not match")}</p>
                     </div>
                     <button onClick={handleNewPasswordSubmit} className="forgot-button" type="submit">{t("reset-btn")}</button>
                     <hr className="horizontal-line"></hr>

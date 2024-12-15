@@ -84,7 +84,7 @@ function Login() {
                 <div className="login-container">
                     <h2 className="login-title">{t("title")}</h2>
                     <div className={`auth-fail ${auth === true? "auth-fail-hidden" : ""}`}>
-                        <p>Authentication failed</p>
+                        <p>{t("Authentication failed")}</p>
                     </div>
                     <form className="login-form" onSubmit={handleSubmit}>
                         <div className="input-frame">
